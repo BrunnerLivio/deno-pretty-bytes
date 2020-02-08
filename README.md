@@ -61,19 +61,6 @@ Default: `false`
 
 Format the number as [bits](https://en.wikipedia.org/wiki/Bit) instead of [bytes](https://en.wikipedia.org/wiki/Byte). This can be useful when, for example, referring to [bit rate](https://en.wikipedia.org/wiki/Bit_rate).
 
-##### locale
-
-Type: `boolean | string`\
-Default: `false` *(No localization)*
-
-**Important:** Only the number and decimal separator are localized. The unit title is not and will not be localized.
-
-- If `true`: Localize the output using the system/browser locale.
-- If `string`: Expects a [BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag) (For example: `en`, `de`, …)
-
-**Note:** Localization should generally work in browsers. Node.js needs to be [built](https://github.com/nodejs/node/wiki/Intl) with `full-icu` or `system-icu`. Alternatively, the [`full-icu`](https://github.com/unicode-org/full-icu-npm) module can be used to provide support at runtime. [Node.js 13](https://nodejs.org/en/blog/release/v13.0.0/) and later ships with ICU by default.
-
-
 ## Related
 
 - [sindresorhus/pretty-bytes](https://github.com/sindresorhus/pretty-bytes) - The original NodeJS implementation of pretty-bytes

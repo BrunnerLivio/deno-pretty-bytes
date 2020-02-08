@@ -15,25 +15,7 @@ const BIT_UNITS = [
 export interface PrettyBytesOptions {
   bits?: boolean;
   signed?: boolean;
-  locale?: boolean | string;
 }
-
-/*
- * Formats the given number using `Number#toLocaleString`.
- * - If locale is a string, the value is expected to be a locale-key (for example: `de`).
- * - If locale is true, the system default locale is used for translation.
- * - If no value for locale is specified, the number is returned unmodified.
- */
-const toLocaleString = (number: number, locale: string | boolean) => {
-  let result = number.toString();
-  if (typeof locale === 'string') {
-    result = number.toLocaleString(locale);
-  } else if (locale === true) {
-    result = number.toLocaleString();
-  }
-
-  return result;
-};
 
 export function prettyBytes(number: number, options?: PrettyBytesOptions) {
   if (!Number.isFinite(number)) {
@@ -57,8 +39,7 @@ export function prettyBytes(number: number, options?: PrettyBytesOptions) {
   }
 
   if (number < 1) {
-    const numberString = toLocaleString(number, options.locale);
-    return `${prefix}${numberString} ${UNITS[0]}`;
+    return `${prefix}${number} ${UNITS[0]}`;
   }
 
   const exponent = Math.min(
@@ -67,9 +48,7 @@ export function prettyBytes(number: number, options?: PrettyBytesOptions) {
   );
 
   number = Number((number / Math.pow(1000, exponent)).toPrecision(3));
-  const numberString = toLocaleString(number, options.locale);
-
   const unit = UNITS[exponent];
 
-  return `${prefix}${numberString} ${unit}`;
+  return `${prefix}${number} ${unit}`;
 }
